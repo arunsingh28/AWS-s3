@@ -2,7 +2,6 @@ import './App.css';
 import { useState, useEffect, useRef } from 'react'
 import axios from 'axios';
 
-
 function App() {
 
   // interface Preview {
@@ -54,6 +53,9 @@ function App() {
 
       console.log(result)
     }
+
+    setPreview('')
+    setSelected('')
   }
 
 
@@ -81,6 +83,7 @@ function App() {
             ) : false
           }
         </form>
+       
       </header>
     </div>
   );
