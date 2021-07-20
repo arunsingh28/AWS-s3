@@ -30,21 +30,35 @@ const upload = multer({
         key: function (req, file, cb) {
             // rename filename to be unique
             cb(null, Date.now().toString() + '-' + file.originalname)
-        },  
+        },
     })
 })
 
-app.post('/image', upload.single('image'), async (req, res) => {
+// upload file
+app.post('/file', upload.single('file'), async (req, res) => {
     const file = req.file
     console.log(file)
-    console.log(`size of file is :${file.size/1000000} MB`)
+    console.log(`size of file is :${file.size / 1000000} MB`)
     res.json({ msg: 'working' })
 })
 
 
-// fetch a file from s3
-app.get('/image/:id', async (req, res) => {
-    const id = req.params.id 
+// delete file
+app.get('/file/:id', (req, res) => {
+    const fileId = req.params.id
+    console.log(fileId)
+    s3.deleteObject({
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: fileId,
+    },
+        (err, data) => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(data)
+            }
+        })
+    res.send('deleted')
 })
 
 

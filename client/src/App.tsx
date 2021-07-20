@@ -44,8 +44,8 @@ function App() {
       // dev mode
       console.log('dev mode')
       const formData = new FormData()
-      formData.append('image', selected)
-      const result = await axios.post('http://localhost:3002/image', formData, {
+      formData.append('file', selected)
+      const result = await axios.post('http://localhost:3002/file', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -64,7 +64,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <form onSubmit={handleSubmit}>
-          <input type="file" name="image" required onChange={changeHandler}  />
+          <input type="file" name="file" required onChange={changeHandler}  />
           {
             selected ? (
               <div className="preView">
