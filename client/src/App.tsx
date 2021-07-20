@@ -1,7 +1,14 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react'
+
+
+
 function App() {
 
+  // interface Preview {
+  //   src: string;
+  //   undefindex: any;
+  // }
 
   const [selected, setSelected] = useState<any | null>(null);
   const [preview, setPreview] = useState<any | null>(null);
@@ -17,17 +24,41 @@ function App() {
     setPreview(objectUrl)
   }, [selected])
 
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    alert('Submit was clicked');
-    console.log(e)
-  }
-
+  // preview
   const changeHandler = (e: any) => {
     setSelected(e.target.files[0])
     file.current.style.display = 'none'
   }
+
+
+
+
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+
+    // handle form submit
+
+    if (process.env.NODE_ENV === 'production') {
+
+    } else {
+      // dev mode
+      console.log('dev mode')
+      const formData = new FormData()
+      formData.append('image', selected)
+      const result = await fetch('http://localhost:3002/image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        body: formData
+      }).then(res => res.json())
+      console.log(result)
+
+    }
+  }
+
+
 
   return (
     <div className="App">
@@ -47,7 +78,7 @@ function App() {
             selected ? (
               <>
                 <button type="submit">Upload</button>
-                <button type="reset">Reset</button>
+                <button onClick={() => window.location.reload()}>Reset</button>
               </>
             ) : false
           }
