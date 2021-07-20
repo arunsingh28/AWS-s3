@@ -12,17 +12,18 @@ app.use(cors())
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json({ limit: '50mb', extended: true }));
 
-
+// aws access cred.
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_KEY,
 })
 
-
+// upload to AWS bucket
 const upload = multer({
     storage: multerS3({
         s3,
         bucket: process.env.AWS_BUCKET_NAME,
+        // give public access to object         
         acl: 'public-read',
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname })
