@@ -60,7 +60,7 @@ mimetype: 'application/pdf'
 mimetype: 'image/jpeg',
 ```
 
-<<<<<<< HEAD
+
 ## Delete File
 
 ```
@@ -77,12 +77,13 @@ mimetype: 'image/jpeg',
         })
 ```
 
-just pass key of the object to `locahost:3002/file/`**:key**
-=======
+just pass key value to localhost:3002/file/[key_value]
 
 ## sample 
 
 `https://ts-module-2021.s3.amazonaws.com/1626802738371-sample.jpg`
 
 <img src="https://ts-module-2021.s3.amazonaws.com/1626802738371-sample.jpg" height="500" width="700"/>
->>>>>>> 5311ecf9d8657d2a8eaaab36e8abe3e2f9cddbe4
+
+
+
