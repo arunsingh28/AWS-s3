@@ -12,18 +12,17 @@ app.use(cors())
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(express.json({ limit: '50mb', extended: true }));
 
-// aws access cred.
+
 const s3 = new AWS.S3({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_KEY,
 })
 
-// upload to AWS bucket
+
 const upload = multer({
     storage: multerS3({
         s3,
         bucket: process.env.AWS_BUCKET_NAME,
-        // give public access to object         
         acl: 'public-read',
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname })
@@ -38,14 +37,14 @@ const upload = multer({
 app.post('/image', upload.single('image'), async (req, res) => {
     const file = req.file
     console.log(file)
+    console.log(`size of file is :${file.size/1000000}`)
     res.json({ msg: 'working' })
 })
 
 
 // fetch a file from s3
 app.get('/image/:id', async (req, res) => {
-    const id = req.params.id
-    
+    const id = req.params.id 
 })
 
 
