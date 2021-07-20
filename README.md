@@ -59,3 +59,21 @@ for filtering file use `mimetype` like `console.log(req.file.mimetype)` this wil
 mimetype: 'application/pdf'
 mimetype: 'image/jpeg',
 ```
+
+## Delete File
+
+```
+ s3.deleteObject({
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: fileId,
+    },
+        (err, data) => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(data)
+            }
+        })
+```
+
+just pass key of the object to `locahost:3002/file/`**:key**
