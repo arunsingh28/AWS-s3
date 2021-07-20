@@ -26,7 +26,7 @@ function App() {
   // preview
   const changeHandler = (e: any) => {
     setSelected(e.target.files[0])
-    file.current.style.display = 'none'
+    
   }
 
 
@@ -45,7 +45,7 @@ function App() {
       console.log('dev mode')
       const formData = new FormData()
       formData.append('image', selected)
-      const result = await axios.post('http://localhost:3002/image', formData,{
+      const result = await axios.post('http://localhost:3002/image', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -64,7 +64,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <form onSubmit={handleSubmit}>
-          <input type="file" name="image" required onChange={changeHandler} ref={file} />
+          <input type="file" name="image" required onChange={changeHandler}  />
           {
             selected ? (
               <div className="preView">
@@ -74,16 +74,10 @@ function App() {
               </div>
             ) : false
           }
-          {
-            selected ? (
-              <>
-                <button type="submit">Upload</button>
-                <button onClick={() => window.location.reload()}>Reset</button>
-              </>
-            ) : false
-          }
+          <button type="submit">Upload</button>
+          <button onClick={() => window.location.reload()}>Reset</button>
         </form>
-       
+
       </header>
     </div>
   );

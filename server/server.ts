@@ -37,7 +37,7 @@ const upload = multer({
 app.post('/image', upload.single('image'), async (req, res) => {
     const file = req.file
     console.log(file)
-    console.log(`size of file is :${file.size/1000000}`)
+    console.log(`size of file is :${file.size/1000000} MB`)
     res.json({ msg: 'working' })
 })
 
