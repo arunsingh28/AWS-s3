@@ -31,3 +31,9 @@
 button{
   padding: 5px 40px;
 }
+img{
+  height: 300px;
+  width: 300px;
+  object-fit: contain;
+  object-position: center;
+}
