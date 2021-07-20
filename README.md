@@ -59,3 +59,10 @@ for filtering file use `mimetype` like `console.log(req.file.mimetype)` this wil
 mimetype: 'application/pdf'
 mimetype: 'image/jpeg',
 ```
+
+
+## sample 
+
+`https://ts-module-2021.s3.amazonaws.com/1626802738371-sample.jpg`
+
+<img src="https://ts-module-2021.s3.amazonaws.com/1626802738371-sample.jpg" height="500" width="700"/>
