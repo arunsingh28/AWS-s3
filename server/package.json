@@ -5,11 +5,11 @@
   "main": "server.ts",
   "scripts": {
     "dev": "nodemon .",
-    "start": "node ."
+    "start": "node server.ts"
   },
   "keywords": [],
   "author": "Arun Pratap Singh",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "aws-sdk": "^2.949.0",
     "cors": "^2.8.5",

@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect, useRef } from 'react'
-
+import axios from 'axios';
 
 
 function App() {
@@ -46,15 +46,13 @@ function App() {
       console.log('dev mode')
       const formData = new FormData()
       formData.append('image', selected)
-      const result = await fetch('http://localhost:3002/image', {
-        method: 'POST',
+      const result = await axios.post('http://localhost:3002/image', formData,{
         headers: {
           'Content-Type': 'multipart/form-data'
-        },
-        body: formData
-      }).then(res => res.json())
-      console.log(result)
+        }
+      })
 
+      console.log(result)
     }
   }
 

@@ -3,30 +3,40 @@ let S3 = require('aws-sdk/clients/s3')
 const fs = require('fs')
 
 
-const access_key = process.env.AWS_ACCESS_KEY
-const secret_key = process.env.AWS_SECRET_KEY
-const bucket_name = process.env.AWS_BUCKET_NAME
+const accessKeyId = process.env.AWS_ACCESS_KEY
+const secretAccessKey = process.env.AWS_SECRET_KEY
+const bucketName = process.env.AWS_BUCKET_NAME
 const region = process.env.AWS_BUCKET_REGION
+
 
 
 const s3 = new S3({
     region,
-    access_key,
-    secret_key
+    accessKeyId,
+    secretAccessKey
 })
 
 // uplaod file to s3
-export function uploadFile(file) {
+function uploadFile(file) {
     const fileStream = fs.createReadStream(file.path)
 
-    const uploadParam = {
-        Bucket: bucket_name,
+    const uploadParams = {
+        Bucket: bucketName,
         Body: fileStream,
         Key: file.filename
     }
-
-    return s3.upload(uploadParam).promise()
+    return s3.upload(uploadParams).promise()
 }
 
-
 // download file from s3
+function downloadFile(file) {
+
+    const downloadParams = {
+        Bucket: bucketName,
+        Key: file
+    }
+    return s3.getObject(downloadParams).promise()
+}
+
+exports.uploadFile = uploadFile
+exports.downloadFile = downloadFile
