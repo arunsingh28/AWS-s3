@@ -82,8 +82,8 @@ just pass key value to localhost:3002/file/[key_value]
 ## sample 
 
 `https://ts-module-2021.s3.amazonaws.com/1626802738371-sample.jpg`
-
+<div align="center">
 <img src="https://ts-module-2021.s3.amazonaws.com/1626802738371-sample.jpg" height="500" width="700"/>
-
+</div>
 
 
