@@ -58,11 +58,8 @@ function App() {
     <div className="App">
       <style dangerouslySetInnerHTML={{
         __html: [
-          '.App:before{',
-          'content: "";',
-          'position:absolute',
-          'width:100%',
-          'height:100%',
+          '._layer::before{',
+          `background: url(${preview}) no-repeat center top`,
           '}'
         ].join('\n')
       }}></style>
