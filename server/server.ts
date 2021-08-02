@@ -1,9 +1,10 @@
-const express = require('express');
-const cors = require('cors')
-const multer = require('multer');
-const AWS = require('aws-sdk');
-const multerS3 = require('multer-s3');
-const app = express();
+import express from'express'
+import cors from 'cors';
+import multer from 'multer';
+import AWS from 'aws-sdk';
+import multerS3 from 'multer-s3';
+
+import app = express();
 
 const { uploadFile, downloadFile } = require('./utils/s3.ts')
 

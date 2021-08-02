@@ -3,12 +3,6 @@ import { useState, useEffect, useRef } from 'react'
 import axios from 'axios';
 
 function App() {
-
-  // interface Preview {
-  //   src: string;
-  //   undefindex: any;
-  // }
-
   const [selected, setSelected] = useState<any | null>(null);
   const [preview, setPreview] = useState<any | null>(null);
   const file = useRef<any | null>(null);
@@ -26,7 +20,7 @@ function App() {
   // preview
   const changeHandler = (e: any) => {
     setSelected(e.target.files[0])
-    
+
   }
 
 
@@ -62,14 +56,25 @@ function App() {
 
   return (
     <div className="App">
+      <style dangerouslySetInnerHTML={{
+        __html: [
+          '.App:before{',
+          'content: "";',
+          'position:absolute',
+          'width:100%',
+          'height:100%',
+          '}'
+        ].join('\n')
+      }}></style>
+      <div className="_layer"></div>
       <header className="App-header">
         <form onSubmit={handleSubmit}>
-          <input type="file" name="file" required onChange={changeHandler}  />
+          <input type="file" name="file" required onChange={changeHandler} />
           {
             selected ? (
               <div className="preView">
-                <img src={preview} />
-                {selected.name}<hr />
+                <a href={preview}> <img src={preview} /></a>
+                {selected.name}
                 {selected.type}
               </div>
             ) : false
@@ -77,7 +82,6 @@ function App() {
           <button type="submit">Upload</button>
           <button onClick={() => window.location.reload()}>Reset</button>
         </form>
-
       </header>
     </div>
   );

@@ -1,7 +1,18 @@
 .App {
   text-align: center;
-}
 
+  /* if url present */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.App::before{
+  background-size: cover;
+}
+._layer {
+  filter: blur(5px);
+  height: 100%;
+  width: 100%;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -14,24 +25,25 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: aliceblue;
 }
 
 .App-link {
   color: #61dafb;
 }
-
-button{
+form {
+  width: 100%;
+}
+button {
   padding: 5px 40px;
 }
-img{
+img {
   height: 300px;
   width: 300px;
   object-fit: contain;
