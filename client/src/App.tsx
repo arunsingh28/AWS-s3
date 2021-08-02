@@ -17,6 +17,8 @@ function App() {
     const objectUrl: String = URL.createObjectURL(selected)
     if (selected.type === 'video/mp4') {
       setFormat(false)
+    } else {
+      setFormat(true)
     }
     setPreview(objectUrl)
   }, [selected])
@@ -27,10 +29,6 @@ function App() {
     file.current.style.display = 'none';
 
   }
-
-
-
-
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
