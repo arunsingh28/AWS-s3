@@ -5,6 +5,7 @@ import axios from 'axios';
 function App() {
   const [selected, setSelected] = useState<any | null>(null);
   const [preview, setPreview] = useState<any | null>(null);
+  const [format, setFormat] = useState<any | null>(null);
   const file = useRef<any | null>(null);
 
 
@@ -14,12 +15,16 @@ function App() {
       return
     }
     const objectUrl: String = URL.createObjectURL(selected)
+    if (selected.type === 'video/mp4') {
+      setFormat(false)
+    }
     setPreview(objectUrl)
   }, [selected])
 
   // preview
   const changeHandler = (e: any) => {
     setSelected(e.target.files[0])
+    file.current.style.display = 'none';
 
   }
 
@@ -56,6 +61,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>File Uploder</h1>
       <style dangerouslySetInnerHTML={{
         __html: [
           '._layer::before{',
@@ -66,13 +72,31 @@ function App() {
       <div className="_layer"></div>
       <header className="App-header">
         <form onSubmit={handleSubmit}>
-          <input type="file" name="file" required onChange={changeHandler} />
+          <input type="file" id="file" name="file" ref={file} required onChange={changeHandler} />
           {
             selected ? (
               <div className="preView">
-                <a href={preview}> <img src={preview} /></a>
-                {selected.name}
-                {selected.type}
+                <table>
+                  <tr>
+
+                    {format ? <a href={preview}> <img src={preview} /></a>
+                      : <video controls src={preview}></video>
+                    }
+                  </tr>
+                  <tr>
+                    <td>Name</td>
+                    <td>{selected.name}</td>
+                  </tr>
+                  <tr>
+                    <td>Type</td>
+                    <td>{selected.type}</td>
+                  </tr>
+
+                  <tr>
+                    <td>Size</td>
+                    <td>{(selected.size / 1000000).toPrecision(5)} MB</td>
+                  </tr>
+                </table>
               </div>
             ) : false
           }
